@@ -1,0 +1,39 @@
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+}
+
+body,
+button,
+input {
+  font: 1em Hind, sans-serif;
+  line-height: 1.1em;
+}
+
+body,
+input {
+  color: #171717;
+}
+
+body,
+.search-form {
+  display: flex;
+}
+
+body {
+  background: #f1f1f1;
+  height: 100vh;
+}
+
+.container {
+  display: block;
+  width: 100%;
+  height: fit-content;
+  background: radial-gradient(circle, rgba(238, 174, 202, 0.6) 0%, rgba(148, 187, 233, 0.6) 100%);
+}
