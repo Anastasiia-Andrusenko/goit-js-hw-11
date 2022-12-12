@@ -1,0 +1,87 @@
+
+.load-more {
+  margin: 12px auto 16px auto;
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: transform linear 200ms;
+}
+
+
+.load-more:before {
+  content: "";
+  background: linear-gradient(45deg,
+      #ff000076,
+      #ff730075,
+      #fffb0075,
+      #48ff0075,
+      #00ffd586,
+      #002aff85,
+      #7b00ff82,
+      #ff00c875,
+      #ff000090);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-load-more 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-load-more {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.load-more:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.button-container {
+  // position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.load-more:hover {
+  transform: scale(1.07);
+}
+
+.load-more:active {
+  transform: scale(1.025);
+}
+
