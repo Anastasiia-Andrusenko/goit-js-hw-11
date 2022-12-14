@@ -13,30 +13,19 @@ export default class NewsApiService {
   };
 
   fetchImages() {
-    console.log(this);
+    // console.log(this);
     return fetch(`${BASE_URL}?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`)
     .then(response => {
       // console.log(response);
       return response.json();
     }).then(data => {
       // console.log(data);
-      localStorage.setItem("currentPage", JSON.stringify(this.page));
-
-      // console.log(data.totalHits);
-      // if (data.totalHits <= Number(this.page) * 40) {
-      //   refs.btnLoadMore.classList.add('visually-hidden');
-      //   Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
-      // }
       this.page += 1;
-      // const images = data.hits;
-      // const totalImages = data.totalHits;
-      // Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
-      return data.hits;
+      return data;
     });
   }
 
   resetPage() {
-    localStorage.removeItem("currentPage");
     this.page = 1;
   }
 
