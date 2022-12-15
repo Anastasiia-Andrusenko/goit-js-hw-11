@@ -25,46 +25,48 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
   scrollZoom: false,
 });
-// console.log(lightbox);
 
-// --------- ДОДАЄМО СЛУХАЧА ПОДІЙ НА САБМІТ
-refs.form.addEventListener('submit', onSearch);
 
-function onSearch(evt) {
+// --------- function on submit
+const onSearch = async evt => {
   evt.preventDefault();
 
-  // --------- звбираємо значення пошука
   newsApiService.query = evt.currentTarget.elements.searchQuery.value.trim();
-  
   newsApiService.resetPage();
 
-  newsApiService.fetchImages().then(data => {
+  try {
+    const data = await newsApiService.fetchImages();
     console.log(data);
     const totalImages = data.totalHits;
-    
+    let totalPages = Math.ceil(totalImages / data.hits.length) || null;
+
     if (data.hits.length === 0) {
-
+      
       return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-    } else if (data.hits.length === 40) {
+    } else if (newsApiService.page === totalPages) {
 
       clearMarkup();
       renderImgsList(data.hits);
-      Notiflix.Notify.success(`Hooray! We found ${totalImages} images.`);
-      showButton(); 
-    } else if (data.hits.length < 40) {
-
-      clearMarkup();
-      renderImgsList(data.hits);
-      Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+      lightbox.refresh();
+      const message = await Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
       refs.btnLoadMore.classList.add('visually-hidden');
-    }
-  });
+    } else {
 
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-  });
+      clearMarkup();
+      renderImgsList(data.hits);
+      lightbox.refresh();
+      Notiflix.Notify.success(`Hooray! We found ${totalImages} images.`);
+      showButton();
+    };
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  } catch (error) {
+    console.log(error);
+  };
 };
 
 
@@ -79,6 +81,7 @@ function onLoadMore() {
       refs.btnLoadMore.classList.add('visually-hidden');
     }
     renderImgsList(data.hits);
+    lightbox.refresh();
   });
 }
 
@@ -94,3 +97,5 @@ function clearMarkup() {
   refs.gallery.innerHTML = '';
 }
 
+// --------- ДОДАЄМО СЛУХАЧА ПОДІЙ НА САБМІТ
+refs.form.addEventListener('submit', onSearch);
