@@ -4,6 +4,7 @@ import Notiflix from "notiflix";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
+
 // --------- ІМПОРТ КЛАСА
 import NewsApiService from "./js/news-service";
 
@@ -48,7 +49,7 @@ const onSearch = async evt => {
       clearMarkup();
       renderImgsList(data.hits);
       lightbox.refresh();
-      const message = await Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+      Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
       refs.btnLoadMore.classList.add('visually-hidden');
     } else {
 
