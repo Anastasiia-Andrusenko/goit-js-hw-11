@@ -2,7 +2,6 @@
 import axios from "axios";
 import Notiflix from "notiflix";
 import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
 
 
 // --------- ІМПОРТ КЛАСА
@@ -28,7 +27,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 });
 
 
-// --------- function on submit
+// --------- ФУНКЦІЯ ПРИ САБМІТІ 
 const onSearch = async evt => {
   evt.preventDefault();
 

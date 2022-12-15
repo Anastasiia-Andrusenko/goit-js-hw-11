@@ -5,29 +5,16 @@ $sl-caption-background: rgba(245, 237, 255, 0.8);
 
 .gallery {
   display: grid;
-  max-width: 96vw;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  // grid-auto-rows: 240px;
-  grid-gap: 14px;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 80px;
-  padding-bottom: 6px;
-  list-style: none;
+    max-width: 1140px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-auto-rows: 300px;
+    grid-gap: 24px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none;
+    padding: 80px 12px 6px 12px;
 }
-
-.photo-card {
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-
-  position: relative;
-  box-shadow: 0px 1px 3px 0px rgba(250, 248, 248, 0.2),
-    0px 1px 1px 0px rgba(73, 73, 73, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-}
-
 
 .gallery__image {
   border-radius: 10px 10px 0 0;
